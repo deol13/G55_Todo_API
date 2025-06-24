@@ -3,3 +3,10 @@ spring:
     name: Todo_API
   profiles:
     active: dev
+
+# Swagger UI API documentation
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
