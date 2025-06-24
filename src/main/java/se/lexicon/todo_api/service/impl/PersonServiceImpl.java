@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //import se.lexicon.notify.model.Email;
 //import se.lexicon.notify.service.MessageService;
+import se.lexicon.notify.model.Email;
+import se.lexicon.notify.service.MessageService;
 import se.lexicon.todo_api.dto.PersonDto;
 import se.lexicon.todo_api.entity.Person;
 import se.lexicon.todo_api.repository.PersonRepository;
@@ -14,12 +16,12 @@ import java.util.List;
 @Service
 public class PersonServiceImpl implements PersonService {
     PersonRepository repository;
-    //MessageService<Email> emailService;
+    MessageService<Email> emailService;
 
     @Autowired
-    public PersonServiceImpl(PersonRepository repository /*, MessageService<Email> emailService*/) {
+    public PersonServiceImpl(PersonRepository repository , MessageService<Email> emailService) {
         this.repository = repository;
-        //this.emailService = emailService;
+        this.emailService = emailService;
     }
 
     @Override
@@ -50,12 +52,12 @@ public class PersonServiceImpl implements PersonService {
         // step2: save the entity using repository
         Person savedEntity = repository.save(personEntity);
 
-        /*emailService.sendMessage(
+        emailService.sendMessage(
                 new Email(
                         savedEntity.getEmail(),
                         "Welcome to Todo App",
                         "Hello " + savedEntity.getName() + "!\n\nYour account has been successfully created with ID: " + savedEntity.getId() + ".\nWelcome to our Todo Application!")
-        );*/
+        );
 
         // step3: convert or map the saved entity back to PersonDto
         return new PersonDto(

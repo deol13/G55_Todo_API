@@ -5,6 +5,6 @@ import org.springframework.context.annotation.Import;
 import se.lexicon.notify.config.NotifyUtilConfig;
 
 @Configuration
-//@Import(NotifyUtilConfig.class)
+@Import(NotifyUtilConfig.class)
 public class AppConfig {
 }
