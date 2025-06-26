@@ -52,12 +52,12 @@ public class PersonServiceImpl implements PersonService {
         // step2: save the entity using repository
         Person savedEntity = repository.save(personEntity);
 
-        emailService.sendMessage(
-                new Email(
-                        savedEntity.getEmail(),
-                        "Welcome to Todo App",
-                        "Hello " + savedEntity.getName() + "!\n\nYour account has been successfully created with ID: " + savedEntity.getId() + ".\nWelcome to our Todo Application!")
-        );
+//        emailService.sendMessage(
+//                new Email(
+//                        savedEntity.getEmail(),
+//                        "Welcome to Todo App",
+//                        "Hello " + savedEntity.getName() + "!\n\nYour account has been successfully created with ID: " + savedEntity.getId() + ".\nWelcome to our Todo Application!")
+//        );
 
         // step3: convert or map the saved entity back to PersonDto
         return new PersonDto(
