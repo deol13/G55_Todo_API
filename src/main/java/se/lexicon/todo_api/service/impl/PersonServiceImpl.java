@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //import se.lexicon.notify.model.Email;
 //import se.lexicon.notify.service.MessageService;
-import se.lexicon.notify.model.Email;
-import se.lexicon.notify.service.MessageService;
+//import se.lexicon.notify.model.Email;
+//import se.lexicon.notify.service.MessageService;
 import se.lexicon.todo_api.dto.PersonDto;
 import se.lexicon.todo_api.entity.Person;
 import se.lexicon.todo_api.repository.PersonRepository;
@@ -16,12 +16,12 @@ import java.util.List;
 @Service
 public class PersonServiceImpl implements PersonService {
     PersonRepository repository;
-    MessageService<Email> emailService;
+    //MessageService<Email> emailService;
 
     @Autowired
-    public PersonServiceImpl(PersonRepository repository , MessageService<Email> emailService) {
+    public PersonServiceImpl(PersonRepository repository){// , MessageService<Email> emailService) {
         this.repository = repository;
-        this.emailService = emailService;
+        //this.emailService = emailService;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonDto findById(Long id) {
-        Person personEntity = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Id not found: " + id));
+        Person personEntity = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Id: (" + id +") not found."));
 
         return new PersonDto(
                 personEntity.getId(),
@@ -72,7 +72,7 @@ public class PersonServiceImpl implements PersonService {
     public void delete(Long id) { // 2
 
         Person foundPerson = repository.findById(id) // step 1: check if the person exists
-                .orElseThrow(() -> new IllegalArgumentException("Id not found: " + id));  // step 2 : if exists, delete it
+                .orElseThrow(() -> new IllegalArgumentException("Id: (" + id +") not found."));;  // step 2 : if exists, delete it
 
         // step 3: if not exists, throw an exception
         repository.delete(foundPerson);
